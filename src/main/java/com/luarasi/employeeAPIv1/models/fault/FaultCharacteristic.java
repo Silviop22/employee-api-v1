@@ -1,0 +1,86 @@
+package com.luarasi.employeeAPIv1.models.fault;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import org.springframework.validation.annotation.Validated;
+
+@ApiModel(
+        description = "A characteristic of the fault; these have both a name and a value."
+)
+@Validated
+public class FaultCharacteristic {
+    @JsonProperty("name")
+    private String name = null;
+    @JsonProperty("value")
+    private String value = null;
+
+    public FaultCharacteristic() {
+    }
+
+    public FaultCharacteristic name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @ApiModelProperty(
+            required = true,
+            value = ""
+    )
+    @NotNull
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public FaultCharacteristic value(String value) {
+        this.value = value;
+        return this;
+    }
+
+    @ApiModelProperty(
+            required = true,
+            value = ""
+    )
+    @NotNull
+    public String getValue() {
+        return this.value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o != null && this.getClass() == o.getClass()) {
+            FaultCharacteristic faultCharacteristic = (FaultCharacteristic)o;
+            return Objects.equals(this.name, faultCharacteristic.name) && Objects.equals(this.value, faultCharacteristic.value);
+        } else {
+            return false;
+        }
+    }
+
+    public int hashCode() {
+        return Objects.hash(new Object[]{this.name, this.value});
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class FaultCharacteristic {\n");
+        sb.append("    name: ").append(this.toIndentedString(this.name)).append("\n");
+        sb.append("    value: ").append(this.toIndentedString(this.value)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private String toIndentedString(Object o) {
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
+    }
+}
